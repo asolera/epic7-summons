@@ -29,8 +29,8 @@
     text-align: center;
   }
 
-  input[type="text"]:disabled {
-    background: #dddddd;
+  input[type="number"]:disabled {
+    background: gray;
   }
 
   :global(body) {

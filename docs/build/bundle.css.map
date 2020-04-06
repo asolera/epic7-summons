@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\..\\App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n  let current = {\n    gems: 0,\n    bookmarks: 0\n  };\n  let currentSummons;\n  let goldTransmitStones;\n  let currentSummonsPercentage;\n  let summonType = 'banner';\n  let guaranteedSummons = 120;\n  $: if (summonType == 'mystic') {\n    current.gems = 0;\n    currentSummons = Math.floor(current.bookmarks / 50);\n  } else if (summonType == 'banner') {\n    currentSummons = Math.floor(current.gems / 95) + Math.floor(current.bookmarks / 5);\n    goldTransmitStones = Math.floor(currentSummons / 20);\n  }\n  $: currentSummonsPercentage = Math.round(currentSummons / guaranteedSummons * 100);\n</script>\n\n<style>\n  .main {\n    margin-top: 50px;\n    text-align: center;\n  }\n\n  input {\n    text-align: center;\n  }\n\n  input[type=\"text\"]:disabled {\n    background: #dddddd;\n  }\n\n</style>\n\n<div class=\"container main\">\n  <div class=\"row\">\n    <h2 class=\"hero-heading\">Epic Seven Guaranteed Summon Calculator</h2>\n  </div>\n\n  <div class=\"row\">\n    <form>\n      <label>Type:</label>\n      <input type=\"radio\" bind:group={summonType} value=\"banner\" />\n        <span class=\"label-body\">Banner</span>\n      <input type=\"radio\" bind:group={summonType} value=\"mystic\" />\n        <span class=\"label-body\">Mystic</span>\n      <label for=\"gems\">Current Gems:</label>\n      <input type=\"text\" autofocus bind:value={current.gems} disabled={summonType == 'mystic'} />\n      <label for=\"gems\">Current Bookmarks:</label>\n      <input type=\"text\" bind:value={current.bookmarks} />\n    </form>\n  </div>\n\n  <div>{currentSummons} of {guaranteedSummons} summons ({currentSummonsPercentage}%)</div>\n\n  <div>\n    <label for=\"summonProgress\">Progress:</label>\n    <progress id=\"summonProgress\" value=\"{currentSummons}\" max=\"{guaranteedSummons}\"> {currentSummonsPercentage}% </progress>\n  </div>\n\n  {#if summonType == 'banner'}\n    <label for=\"goldStones\"></label>\n    <div id=\"goldStones\">{goldTransmitStones} Gold Transmit Stones</div>\n  {/if}\n\n</div>"
+  ],
+  "names": [],
+  "mappings": "AAqBE,KAAK,eAAC,CAAC,AACL,UAAU,CAAE,IAAI,CAChB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,KAAK,eAAC,CAAC,AACL,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,KAAK,CAAC,IAAI,CAAC,MAAM,gBAAC,SAAS,AAAC,CAAC,AAC3B,UAAU,CAAE,OAAO,AACrB,CAAC"
+}

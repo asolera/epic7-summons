@@ -1,5 +1,5 @@
-# Epic Seven Garanteed Summon Calculator
+# Epic Seven Guaranteed Summon Calculator
 
-This is a simple [Epic Seven](https://epic7.smilegatemegaport.com/world) Garanteed Summon Calculator.
+This is a simple [Epic Seven](https://epic7.smilegatemegaport.com/world) Guaranteed Summon Calculator.
 
-Link: [epic7-summons.github.io](https://epic7-summons.github.io)
+Link to calculator: [epic7-summons.github.io](https://asolera.github.io/epic7-summons/)

@@ -5,7 +5,7 @@
   };
   let currentSummons;
   let goldTransmitStones;
-  let currentSummonsPercentage;
+  let currentSummonsPercentage = 0;
   let summonType = 'banner';
   let guaranteedSummons = 120;
   $: if (summonType == 'mystic') {
@@ -15,7 +15,8 @@
     currentSummons = Math.floor(current.gems / 95) + Math.floor(current.bookmarks / 5);
     goldTransmitStones = Math.floor(currentSummons / 20);
   }
-  $: currentSummonsPercentage = Math.round(currentSummons / guaranteedSummons * 100);
+  $: if (isNaN(currentSummons)) currentSummons = 0
+  $: if (isNaN(goldTransmitStones)) goldTransmitStones = 0
 </script>
 
 <style>
@@ -47,9 +48,9 @@
       <input type="radio" bind:group={summonType} value="mystic" />
         <span class="label-body">Mystic</span>
       <label for="gems">Current Gems:</label>
-      <input type="number" autofocus bind:value={current.gems} disabled={summonType == 'mystic'} />
+      <input type=number min=0 max=99999 bind:value={current.gems} disabled={summonType == 'mystic'} />
       <label for="gems">Current Bookmarks:</label>
-      <input type="number" bind:value={current.bookmarks} />
+      <input type=number min=0 max=99999 bind:value={current.bookmarks} />
     </form>
   </div>
 
@@ -57,7 +58,7 @@
 
   <div>
     <label for="summonProgress">Progress:</label>
-    <progress id="summonProgress" value="{currentSummons}" max="{guaranteedSummons}"> {currentSummonsPercentage}% </progress>
+    <progress id="summonProgress" value="{currentSummons || 0}" max="{guaranteedSummons}"> {currentSummonsPercentage}% </progress>
   </div>
 
   {#if summonType == 'banner'}

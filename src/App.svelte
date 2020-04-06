@@ -20,7 +20,7 @@
 
 <style>
   .main {
-    margin-top: 50px;
+    margin-top: 5px;
     text-align: center;
   }
 
@@ -47,9 +47,9 @@
       <input type="radio" bind:group={summonType} value="mystic" />
         <span class="label-body">Mystic</span>
       <label for="gems">Current Gems:</label>
-      <input type="text" autofocus bind:value={current.gems} disabled={summonType == 'mystic'} />
+      <input type="number" autofocus bind:value={current.gems} disabled={summonType == 'mystic'} />
       <label for="gems">Current Bookmarks:</label>
-      <input type="text" bind:value={current.bookmarks} />
+      <input type="number" bind:value={current.bookmarks} />
     </form>
   </div>
 

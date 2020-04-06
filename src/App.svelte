@@ -71,6 +71,11 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
   }
 
+  .version {
+    margin-top: 30px;
+    font-size: 10px;
+  }
+
 </style>
 
 <div class="container main">
@@ -103,5 +108,7 @@
     <label for="goldStones"></label>
     <div class="gold" id="goldStones">{goldTransmitStones} Gold Transmit Stones</div>
   {/if}
+
+  <div class="version">Made by Solera - Version 1.20.0406aa</div>
 
 </div>

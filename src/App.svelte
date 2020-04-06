@@ -1,36 +1,26 @@
 <script>
-  let current = {
-    gems: 0,
-    bookmarks: 0
-  };
+  import Title from './components/Title.svelte';
+  import Calculator from './components/Calculator.svelte';
+  import Progress from './components/Progress.svelte';
+  import GoldStones from './components/GoldStones.svelte';
+  import Footer from './components/Footer.svelte';
+
+  const version = '1.20.0406c';
+  const title = 'Epic Seven Guaranteed Summon Calculator';
+  const guaranteedSummons = 120;
+  let summonType;
   let currentSummons;
   let goldTransmitStones;
   let currentSummonsPercentage = 0;
-  let summonType = 'banner';
-  let guaranteedSummons = 120;
-  $: if (summonType == 'mystic') {
-    current.gems = 0;
-    currentSummons = Math.floor(current.bookmarks / 50);
-  } else if (summonType == 'banner') {
-    currentSummons = Math.floor(current.gems / 95) + Math.floor(current.bookmarks / 5);
-    goldTransmitStones = Math.floor(currentSummons / 20);
-  }
+
   $: if (isNaN(currentSummons)) currentSummons = 0
-  $: if (isNaN(goldTransmitStones)) goldTransmitStones = 0
+  $: currentSummonsPercentage = Math.floor(currentSummons / guaranteedSummons * 100);
 </script>
 
 <style>
   .main {
     margin-top: 5px;
     text-align: center;
-  }
-
-  input {
-    text-align: center;
-  }
-
-  input[type="number"]:disabled {
-    background: gray;
   }
 
   :global(body) {
@@ -52,63 +42,27 @@
     border-radius: 25px;
     padding: 10px;
   }
-
-  .gold {
-    color: #BFAB77;
-    font-weight: bold;
-  }
-
-  .summons {
-    color: #9CDCFE;
-    font-weight: bold;
-  }
-
-  .container input {
-    color: #000;
-  }
-
-  .title {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-  }
-
-  .version {
-    margin-top: 30px;
-    font-size: 10px;
-  }
-
 </style>
 
 <div class="container main">
-  <div class="row">
-    <h4 class="hero-heading title">Epic Seven Guaranteed Summon Calculator</h4>
-  </div>
+  <Title {title} />
 
-  <div class="row">
-    <form>
-      <label>Type:</label>
-      <input type="radio" bind:group={summonType} value="banner" />
-        <span class="label-body">Banner</span>
-      <input type="radio" bind:group={summonType} value="mystic" />
-        <span class="label-body">Mystic</span>
-      <label for="gems">Current Gems:</label>
-      <input type=number min=0 max=99999 bind:value={current.gems} disabled={summonType == 'mystic'} />
-      <label for="gems">Current Bookmarks:</label>
-      <input type=number min=0 max=99999 bind:value={current.bookmarks} />
-    </form>
-  </div>
+  <Calculator 
+    bind:goldTransmitStones={goldTransmitStones} 
+    bind:summonType={summonType}
+    bind:currentSummons={currentSummons}
+  />
 
-  <div class="summons">{currentSummons} of {guaranteedSummons} summons ({currentSummonsPercentage}%)</div>
-
-  <div>
-    <label for="summonProgress">Progress:</label>
-    <progress id="summonProgress" value="{currentSummons || 0}" max="{guaranteedSummons}"> {currentSummonsPercentage}% </progress>
-  </div>
+  <Progress 
+    currentValue={currentSummons}
+    maxValue={guaranteedSummons}
+    percentage={currentSummonsPercentage} 
+  />
 
   {#if summonType == 'banner'}
-    <label for="goldStones"></label>
-    <div class="gold" id="goldStones">{goldTransmitStones} Gold Transmit Stones</div>
+    <GoldStones {goldTransmitStones} />
   {/if}
 
-  <div class="version">Made by Solera - Version 1.20.0406b</div>
+  <Footer {version} />
 
 </div>

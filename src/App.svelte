@@ -33,11 +33,49 @@
     background: #dddddd;
   }
 
+  :global(body) {
+    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), #000),
+      url("background.jpg");
+    background-repeat: no-repeat, no-repeat;
+    background-color: #000;
+    background-size: cover, cover;
+  }
+
+  :global(html) {
+    height: 100%;
+  }
+
+  .container {
+    background-color: #1E1E1E;
+    opacity: 70%;
+    color: #ccc;
+    border-radius: 25px;
+    padding: 10px;
+  }
+
+  .gold {
+    color: #BFAB77;
+    font-weight: bold;
+  }
+
+  .summons {
+    color: #9CDCFE;
+    font-weight: bold;
+  }
+
+  .container input {
+    color: #000;
+  }
+
+  .title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
 </style>
 
 <div class="container main">
   <div class="row">
-    <h2 class="hero-heading">Epic Seven Guaranteed Summon Calculator</h2>
+    <h4 class="hero-heading title">Epic Seven Guaranteed Summon Calculator</h4>
   </div>
 
   <div class="row">
@@ -54,7 +92,7 @@
     </form>
   </div>
 
-  <div>{currentSummons} of {guaranteedSummons} summons ({currentSummonsPercentage}%)</div>
+  <div class="summons">{currentSummons} of {guaranteedSummons} summons ({currentSummonsPercentage}%)</div>
 
   <div>
     <label for="summonProgress">Progress:</label>
@@ -63,7 +101,7 @@
 
   {#if summonType == 'banner'}
     <label for="goldStones"></label>
-    <div id="goldStones">{goldTransmitStones} Gold Transmit Stones</div>
+    <div class="gold" id="goldStones">{goldTransmitStones} Gold Transmit Stones</div>
   {/if}
 
 </div>

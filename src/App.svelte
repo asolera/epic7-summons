@@ -109,6 +109,6 @@
     <div class="gold" id="goldStones">{goldTransmitStones} Gold Transmit Stones</div>
   {/if}
 
-  <div class="version">Made by Solera - Version 1.20.0406aa</div>
+  <div class="version">Made by Solera - Version 1.20.0406b</div>
 
 </div>
